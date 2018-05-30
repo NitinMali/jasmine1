@@ -13,23 +13,14 @@
   <div id="myDIV" class="header">
     <h2 style="margin:5px">ToDo List</h2>
     <input type="text" id="myInput" placeholder="Title...">
-    <span onclick="newElement()" class="addBtn">Add</span>
+    <span onclick="todoObj.addtoToDo()" class="addBtn">Add</span>
   </div>
 
   <!-- list of todo's -->
-  <ul id="myUL">
-    {^{for todoObj.todos}}
-        <li>{{:title}}</li>
-    {{/for}}
- </ul>
+  <ul id="myUL"></ul>
  <!-- End list of todo's -->
 
 </body>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jsrender/0.9.88/jsrender.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jsviews/0.9.90/jsviews.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.0/underscore-min.js"></script>
 
   <script src="src/ToDo.js"></script>
   
