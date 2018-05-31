@@ -1,23 +1,20 @@
-function ToDo(){
-    this.todos = []
+function ToDoController(){
+
 }
 
-ToDo.prototype.addNewItem = function(item){
-    this.todos.push(item);
-}
-
-ToDo.prototype.addtoToDo = function(){
+ToDoController.prototype.addtoToDo = function(){
     let title = document.getElementById('myInput').value;
 
     if(title) {
         let item = {title: title, completed: false}
-        this.todos.push(item);
-        this.render(item);
+        todoService.addNewItem(item).then((todos) => {
+            console.log(todos)
+            this.render(item)
+        });
     }
-    
 }
 
-ToDo.prototype.render = function(item){
+ToDoController.prototype.render = function(item){
     let liEle = document.createElement('li');
     let liTextNode = document.createTextNode(item.title);
     liEle.appendChild(liTextNode);
@@ -32,5 +29,5 @@ ToDo.prototype.render = function(item){
     liEle.appendChild(spanEle);
 }
 
-let todoObj = new ToDo();
 
+let todoCtrl = new ToDoController();
