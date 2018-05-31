@@ -1,3 +1,21 @@
+var chai = require('chai');
+var chaiAsPromised = require("chai-as-promised");
+
+chai.use(chaiAsPromised);
+
+// Then either:
+var expect = chai.expect;
+// or:
+//var assert = chai.assert;
+// or:
+//chai.should();
+// according to your preference of assertion style
+
+//const helper = require('../test_helper');
+const ToDoService = require('../test-helper').ToDoService;
+console.log(ToDoService)
+
+
 describe('Test functionality', function(){
 
     it('should add an item',  function(){
@@ -5,44 +23,25 @@ describe('Test functionality', function(){
         var todoService = new ToDoService();
         
         //add new todo
-        todoService.addNewItem({title: 'New Item', completed: false});
+        return todoService.addNewItem({title: 'New Item', completed: false}).then(function(todos){
+            console.log(todos);
+            //test
+            expect(todos.length).to.equal(1);
+        });
 
-        //test
-        expect(todoService.todos.length).toBe(1);
+        
     })
 });
 
 
 describe('Test DOM manipulation', function(){
 
-    it('should create new li element', function(){
+    it('should create new li element', async function(){
 
-        var page = require('webpage').create();
-        console.log('The default user agent is ' + page.settings.userAgent);
-        page.settings.userAgent = 'SpecialAgent';
-        page.open('http://localhost/jasmine1/', function(status) {
-            if (status !== 'success') {
-                console.log('Unable to access network');
-            } else {
-                var ua = page.evaluate(function() {
-                    //return document.getElementById('qua').textContent;
-                     //remove all li
-                    document.getElementById('myUL').innerHTML('');
+        console.log(await browser.version());
+        
+        expect(true).to.be.true;
 
-                    //add input value
-                    document.getElementById('myUL').value = 'My first todo';
-
-                    var newtodoCtrl = new ToDoController();
-
-                    //add new todo
-                    newtodoCtrl.addtoToDo();
-
-                    expect(document.getElementById("myUL").getElementsByTagName("li").length).toBe(1);
-                });
-                console.log(ua);
-            }
-            phantom.exit();
-        });
         /*
         //remove all li
         document.getElementById('myUL').innerHTML('');
