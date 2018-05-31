@@ -17,7 +17,7 @@ describe('Test DOM manipulation', function(){
 
     it('should create new li element', function(){
 
-        var page = require('phantom');;
+        var page = require('webpage').create();
         console.log('The default user agent is ' + page.settings.userAgent);
         page.settings.userAgent = 'SpecialAgent';
         page.open('http://localhost/jasmine1/', function(status) {
