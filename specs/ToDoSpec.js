@@ -35,26 +35,37 @@ describe('Test functionality', function(){
 
 
 describe('Test DOM manipulation', function(){
+    
+    let page;
+
+    before(async function(){
+        console.log(await browser.version());
+        page = await browser.newPage();
+        await page.goto('http://localhost:8080').then(() => done());
+        await page.once('load', () => console.log('Page loaded!')).then(() => done());
+    });
+
+    after(async function(){
+        await page.close();
+    });
+
+
 
     it('should create new li element', async function(){
+        page.evaluate(() => {
+            //remove all li
+            document.getElementById('myUL').innerHTML('');
 
-        console.log(await browser.version());
+            //add input value
+            document.getElementById('myUL').value = 'My first todo';
+
+            var newtodoCtrl = new ToDoController();
+
+            //add new todo
+            newtodoCtrl.addtoToDo();
+
+            expect(document.getElementById("myUL").getElementsByTagName("li").length).to.equal(1);
+        });
         
-        expect(true).to.be.true;
-
-        /*
-        //remove all li
-        document.getElementById('myUL').innerHTML('');
-
-        //add input value
-        document.getElementById('myUL').value = 'My first todo';
-
-        var newtodoCtrl = new ToDoController();
-
-        //add new todo
-        newtodoCtrl.addtoToDo();
-
-        expect(document.getElementById("myUL").getElementsByTagName("li").length).toBe(1);
-        */
     })
 })

@@ -7,7 +7,8 @@ const globalVariables = _.pick(global, ['browser', 'expect']);
 const opts = {
   headless: false,
   slowMo: 100,
-  timeout: 10000
+  timeout: 10000,
+  executablePath : 'C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe'
 };
 
 // expose variables
