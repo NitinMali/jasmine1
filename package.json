@@ -1,7 +1,7 @@
 {
   "name": "jasmine1",
   "version": "1.0.0",
-  "description": "Unit test using Jasmine, Karma and PhantomJs",
+  "description": "Unit test using mocha, chai and puppeteer",
   "main": "index.js",
   "scripts": {
     "test": "mocha bootstrap-puppeteer.js --recursive specs",
